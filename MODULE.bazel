@@ -1,6 +1,7 @@
 module(name = "loophole", version = "0.1.0")
 
 bazel_dep(name = "rules_python", version = "2.3.2")
+# rules_python's generated wheel BUILD files reference package_metadata.
 bazel_dep(name = "package_metadata", version = "0.0.7")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")

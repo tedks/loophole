@@ -41,6 +41,7 @@ py_library(
         ":llm",
         ":models",
         ":session",
+        ":visualize",
         "//loophole/agents:judge",
         "//loophole/agents:legislator",
         "//loophole/agents:loophole_finder",
