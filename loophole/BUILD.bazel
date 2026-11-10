@@ -1,0 +1,53 @@
+"""Explicit Python source graph for the offline and interactive modules."""
+
+load("@rules_python//python:defs.bzl", "py_library")
+load("@loophole_pip//:requirements.bzl", "requirement")
+
+package(default_visibility = ["//visibility:public"])
+
+py_library(
+    name = "models",
+    srcs = ["__init__.py", "models.py"],
+    deps = [requirement("pydantic")],
+)
+
+py_library(
+    name = "session",
+    srcs = ["__init__.py", "session.py"],
+    deps = [":models"],
+)
+
+py_library(
+    name = "visualize",
+    srcs = ["__init__.py", "visualize.py"],
+    deps = [":models"],
+)
+
+py_library(
+    name = "prompts",
+    srcs = ["__init__.py", "prompts.py"],
+)
+
+py_library(
+    name = "llm",
+    srcs = ["__init__.py", "llm.py"],
+    deps = [requirement("anthropic")],
+)
+
+py_library(
+    name = "main",
+    srcs = ["__init__.py", "main.py"],
+    deps = [
+        ":llm",
+        ":models",
+        ":session",
+        ":visualize",
+        "//loophole/agents:judge",
+        "//loophole/agents:legislator",
+        "//loophole/agents:loophole_finder",
+        "//loophole/agents:overreach_finder",
+        requirement("pyyaml"),
+        requirement("rich"),
+        requirement("typer"),
+    ],
+)

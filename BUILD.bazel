@@ -1,0 +1,3 @@
+"""Export the uv-derived dependency contract to the module extension."""
+
+exports_files(["requirements-bazel.txt"])

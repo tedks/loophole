@@ -1,0 +1,35 @@
+"""Agent modules compile without creating an LLM client or making calls."""
+
+load("@rules_python//python:defs.bzl", "py_library")
+
+package(default_visibility = ["//visibility:public"])
+
+py_library(
+    name = "base",
+    srcs = ["__init__.py", "base.py"],
+    deps = ["//loophole:llm", "//loophole:models"],
+)
+
+py_library(
+    name = "judge",
+    srcs = ["__init__.py", "judge.py"],
+    deps = [":base", "//loophole:models", "//loophole:prompts"],
+)
+
+py_library(
+    name = "legislator",
+    srcs = ["__init__.py", "legislator.py"],
+    deps = [":base", "//loophole:models", "//loophole:prompts"],
+)
+
+py_library(
+    name = "loophole_finder",
+    srcs = ["__init__.py", "loophole_finder.py"],
+    deps = [":base", "//loophole:models", "//loophole:prompts"],
+)
+
+py_library(
+    name = "overreach_finder",
+    srcs = ["__init__.py", "overreach_finder.py"],
+    deps = [":base", "//loophole:models", "//loophole:prompts"],
+)

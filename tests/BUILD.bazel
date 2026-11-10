@@ -1,0 +1,17 @@
+"""Offline behavior and import checks for the child package graph."""
+
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "offline_test",
+    srcs = ["offline_test.py"],
+    main = "offline_test.py",
+    legacy_create_init = 0,
+    size = "small",
+    deps = [
+        "//loophole:main",
+        "//loophole:models",
+        "//loophole:session",
+        "//loophole:visualize",
+    ],
+)
